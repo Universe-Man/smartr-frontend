@@ -6,13 +6,10 @@ class Buttons extends React.Component {
     this.state = {}
   }
   handleLoginClick = (event) => {
-    console.log('inside login button');
-    console.log(event.target);
+    this.props.summonLoginForm()
   }
 
   handleSignupClick = (event) => {
-    console.log('inside signup click');
-    console.log(event.target);
     this.props.summonNewUserForm()
   }
 
