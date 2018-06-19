@@ -20,13 +20,18 @@ class SignUpForm extends React.Component {
     })
   }
 
+
   render() {
-    return (
-      <form onSubmit={this.handleNewUser}>
-        Username: <input type='text' onChange={this.handleNameChange} value={this.state.input}/>
-        <input type='submit' />
-      </form>
-    )
+    if (this.props.newUser === true){
+      return (
+        <form onSubmit={this.handleNewUser}>
+          Username: <input type='text' onChange={this.handleNameChange} value={this.state.input}/>
+          <input type='submit' />
+        </form>
+      )
+    } else {
+      return null;
+    }
   }
 
 }

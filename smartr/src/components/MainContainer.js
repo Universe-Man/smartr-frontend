@@ -9,15 +9,22 @@ class MainContainer extends React.Component {
   constructor() {
     super()
     this.state = {
-      loggedIn: false
+      loggedIn: false,
+      newUser: false
     }
+  }
+
+  summonNewUserForm = () => {
+    this.setState({
+      newUser: true
+    })
   }
 
   render() {
     return (
       <div>
-        <Buttons {...this.state} />
-        <SignUpForm />
+        <Buttons {...this.state} summonNewUserForm={this.summonNewUserForm} />
+        <SignUpForm {...this.state}/>
         <Questions />
         <Answers />
         <QuizInfo />

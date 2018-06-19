@@ -13,6 +13,7 @@ class Buttons extends React.Component {
   handleSignupClick = (event) => {
     console.log('inside signup click');
     console.log(event.target);
+    this.props.summonNewUserForm()
   }
 
   handleLogoutClick = (event) => {
