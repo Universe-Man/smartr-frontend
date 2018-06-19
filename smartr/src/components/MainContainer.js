@@ -63,7 +63,9 @@ class MainContainer extends React.Component {
     this.setState({
       quizStarted: true,
       quizStarting: false
-    }, () => console.log(this.state))
+    })
+    //startTimer()
+
   }
 
   render() {
@@ -73,7 +75,7 @@ class MainContainer extends React.Component {
         <SignUpForm {...this.state} createNewUser={this.createNewUser} logUserIn={this.logUserIn} />
         <Questions quizStarting={this.state.quizStarting} quizStarted={this.state.quizStarted} handleCategorySelection={this.handleCategorySelection} handleFirstQuestion={this.handleFirstQuestion} />
         <Answers quizStarted={this.state.quizStarted} />
-        <QuizInfo quizStarted={this.state.quizStarted} />
+        <QuizInfo quizStarted={this.state.quizStarted} handleFirstQuestion={this.handleFirstQuestion}/>
       </div>
     )
   }

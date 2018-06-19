@@ -23,7 +23,6 @@ const Questions = (props) => {
       </div>
     )
   } else if (props.quizStarted === true){
-    console.log('yooooooooooo');
     return (
     <div>
       <p>
