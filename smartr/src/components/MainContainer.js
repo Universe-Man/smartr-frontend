@@ -11,7 +11,8 @@ class MainContainer extends React.Component {
     this.state = {
       loggedIn: false,
       newUser: false,
-      logInNow: false
+      logInNow: false,
+      quizStarting: false
     }
   }
 
@@ -39,12 +40,22 @@ class MainContainer extends React.Component {
     console.log('beep boop beep creating user...');
   }
 
+
+// ** WHEN QUIZ IS DONE MAKE SURE YOU SET LOGGEDIN STATE BACK TO TRUE OR FALSE!! ** //
+  startQuiz = () => {
+    this.setState({
+      loggedIn: "in a quiz",
+      quizStarting: true
+    })
+    console.log('starting quiz...');
+  }
+
   render() {
     return (
       <div>
-        <Buttons {...this.state} summonNewUserForm={this.summonNewUserForm} summonLoginForm={this.summonLoginForm} />
+        <Buttons {...this.state} summonNewUserForm={this.summonNewUserForm} summonLoginForm={this.summonLoginForm} startQuiz={this.startQuiz} />
         <SignUpForm {...this.state} createNewUser={this.createNewUser} logUserIn={this.logUserIn} />
-        <Questions />
+        <Questions quizStarting={this.state.quizStarting}/>
         <Answers />
         <QuizInfo />
       </div>

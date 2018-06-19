@@ -5,12 +5,13 @@ class Buttons extends React.Component {
     super(props)
     this.state = {}
   }
-  handleLoginClick = (event) => {
-    this.props.summonLoginForm()
-  }
 
   handleSignupClick = (event) => {
     this.props.summonNewUserForm()
+  }
+
+  handleLoginClick = (event) => {
+    this.props.summonLoginForm()
   }
 
   handleLogoutClick = (event) => {
@@ -19,26 +20,26 @@ class Buttons extends React.Component {
   }
 
   handleStartQuiz = (event) => {
-    console.log('starting quiz...');
-    console.log(event.target);
+    this.props.startQuiz()
   }
-
+// REVERSE THESE BELOW
   render(){
-    if (this.props.loggedIn === false) {
-
+    if (this.props.loggedIn === true) {
       return(
         <div>
           <button id='login-button' onClick={this.handleLoginClick}>Login</button>
           <button id='signup-button' onClick={this.handleSignupClick}>Sign Up</button>
         </div>
       )
-    } else if (this.props.loggedIn === true) {
+    } else if (this.props.loggedIn === false) {
       return(
         <div>
           <button id='logout-button' onClick={this.handleLogoutClick}>Logout</button>
           <button id='start-quiz-button' onClick={this.handleStartQuiz}>Start Quiz</button>
         </div>
       )
+    } else {
+      return null;
     }
   }
 }

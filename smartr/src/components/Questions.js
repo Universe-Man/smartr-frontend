@@ -1,13 +1,17 @@
 import React from 'react';
 
-const Questions = () => {
+const Questions = (props) => {
 
-  return (
-    <div>
-      Are you dumb?
-    </div>
-  )
-
+  if (props.quizStarting === true){
+    return (
+      <div>
+        <br/>
+        Are you dumb?
+      </div>
+    )
+  } else {
+    return null;
+  }
 }
 
 export default Questions;
