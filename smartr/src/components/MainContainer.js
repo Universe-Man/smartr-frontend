@@ -67,14 +67,13 @@ class MainContainer extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <div>
       <Buttons {...this.state} summonNewUserForm={this.summonNewUserForm} summonLoginForm={this.summonLoginForm} startQuiz={this.startQuiz} />
         <SignUpForm {...this.state} createNewUser={this.createNewUser} logUserIn={this.logUserIn} />
-        <Questions quizStarting={this.state.quizStarting} quizStarted={this.state.quizStarted} handleCategorySelection={this.handleCategorySelection} handleFirstQuestion={this.handleFirstQuestion}/>
-        <Answers quizStarted={this.state.quizStarted}/>
-        <QuizInfo />
+        <Questions quizStarting={this.state.quizStarting} quizStarted={this.state.quizStarted} handleCategorySelection={this.handleCategorySelection} handleFirstQuestion={this.handleFirstQuestion} />
+        <Answers quizStarted={this.state.quizStarted} />
+        <QuizInfo quizStarted={this.state.quizStarted} />
       </div>
     )
   }
