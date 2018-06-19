@@ -12,7 +12,8 @@ class MainContainer extends React.Component {
       loggedIn: false,
       newUser: false,
       logInNow: false,
-      quizStarting: false
+      quizStarting: false,
+      quizStarted: false
     }
   }
 
@@ -50,13 +51,29 @@ class MainContainer extends React.Component {
     console.log('starting quiz...');
   }
 
+  handleCategorySelection = () => {
+    // SEND CATEGORY TO API FOR QUESTIONS
+    console.log('yo i got hit');
+    this.setState({
+      quizStarting: "almost"
+    }, () => console.log(this.state))
+  }
+
+  handleFirstQuestion = () => {
+    this.setState({
+      quizStarted: true,
+      quizStarting: false
+    }, () => console.log(this.state))
+  }
+
   render() {
+    console.log(this.state);
     return (
       <div>
-        <Buttons {...this.state} summonNewUserForm={this.summonNewUserForm} summonLoginForm={this.summonLoginForm} startQuiz={this.startQuiz} />
+      <Buttons {...this.state} summonNewUserForm={this.summonNewUserForm} summonLoginForm={this.summonLoginForm} startQuiz={this.startQuiz} />
         <SignUpForm {...this.state} createNewUser={this.createNewUser} logUserIn={this.logUserIn} />
-        <Questions quizStarting={this.state.quizStarting}/>
-        <Answers />
+        <Questions quizStarting={this.state.quizStarting} quizStarted={this.state.quizStarted} handleCategorySelection={this.handleCategorySelection} handleFirstQuestion={this.handleFirstQuestion}/>
+        <Answers quizStarted={this.state.quizStarted}/>
         <QuizInfo />
       </div>
     )
