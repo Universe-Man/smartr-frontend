@@ -29,14 +29,34 @@ class MainContainer extends React.Component {
     })
   }
 
-  logUserIn = () => {
+  logUserIn = (user) => {
     // FETCH POST TO LOG IN USER
-      console.log('boop beep boop logging user in...');
+    console.log('boop beep boop logging user in...');
+    fetch(`http://localhost:3001/api/v1/sessions`, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+          name: user.inputName,
+          inputPassword: user.inputPassword
+       })
+     })
+     .then(r => r.json())
+     .then(user => console.log(user))
   }
 
-  createNewUser = () => {
+  createNewUser = (newUser) => {
     // FETCH POST TO CREATE A NEW USER
     console.log('beep boop beep creating user...');
+    fetch(`http://localhost:3001/api/v1/users`, {
+		    method: "POST",
+		    headers: {"Content-Type": "application/json"},
+		    body: JSON.stringify({
+	        name: newUser.inputName,
+	        inputPassword: newUser.inputPassword
+	     })
+     })
+     .then(r => r.json())
+     .then(newUser => console.log(newUser))
   }
 
   render() {

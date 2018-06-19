@@ -12,7 +12,7 @@ class SignUpForm extends React.Component {
   handleLogIn = (event) => {
     event.preventDefault();
 
-    this.props.logUserIn()
+    this.props.logUserIn(this.state)
     this.setState({
       inputName: '',
       inputPassword: ''
@@ -22,12 +22,12 @@ class SignUpForm extends React.Component {
   handleNewUser = (event) => {
     event.preventDefault();
 
-    this.props.createNewUser()
+    this.props.createNewUser(this.state);
     this.setState({
       inputName: '',
       inputPassword: ''
     })
-    return this.state.inputName
+    //return this.state.inputName
   }
 
   handleNameChange = (event) => {
