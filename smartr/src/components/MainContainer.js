@@ -13,7 +13,8 @@ class MainContainer extends React.Component {
       newUser: false,
       logInNow: false,
       quizStarting: false,
-      quizStarted: false
+      quizStarted: false,
+      imLeaving: false
     }
   }
 
@@ -65,15 +66,20 @@ class MainContainer extends React.Component {
       quizStarting: false
     })
     //startTimer()
+  }
 
+  sayGoodbyeIdiot = () => {
+    this.setState({
+      imLeaving: true
+    })
   }
 
   render() {
     return (
       <div>
-      <Buttons {...this.state} summonNewUserForm={this.summonNewUserForm} summonLoginForm={this.summonLoginForm} startQuiz={this.startQuiz} />
+      <Buttons {...this.state} summonNewUserForm={this.summonNewUserForm} summonLoginForm={this.summonLoginForm} startQuiz={this.startQuiz} sayGoodbyeIdiot={this.sayGoodbyeIdiot} />
         <SignUpForm {...this.state} createNewUser={this.createNewUser} logUserIn={this.logUserIn} />
-        <Questions quizStarting={this.state.quizStarting} quizStarted={this.state.quizStarted} handleCategorySelection={this.handleCategorySelection} handleFirstQuestion={this.handleFirstQuestion} />
+        <Questions quizStarting={this.state.quizStarting} quizStarted={this.state.quizStarted} handleCategorySelection={this.handleCategorySelection} handleFirstQuestion={this.handleFirstQuestion} imLeaving={this.state.imLeaving}/>
         <Answers quizStarted={this.state.quizStarted} />
         <QuizInfo quizStarted={this.state.quizStarted} handleFirstQuestion={this.handleFirstQuestion}/>
       </div>

@@ -17,12 +17,13 @@ class Buttons extends React.Component {
   handleLogoutClick = (event) => {
     console.log('inside logout click');
     console.log(event.target);
+    this.props.sayGoodbyeIdiot()
   }
 
   handleStartQuiz = (event) => {
     this.props.startQuiz()
   }
-// REVERSE THESE BELOW
+// REVERSE THESE TRUE AND FALSES BELOW
   render(){
     if (this.props.loggedIn === true) {
       return(

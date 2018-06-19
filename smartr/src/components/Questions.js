@@ -30,6 +30,16 @@ const Questions = (props) => {
       </p>
     </div>
     )
+  } else if (props.imLeaving === true){
+      return (
+      <div>
+        <h1>
+        It's okay to be bad at stuff. Next time.
+        </h1>
+        <h5>*under breathe*</h5>
+        <h5>...idiot.</h5>
+      </div>
+      )
   } else {
     return null;
   }
