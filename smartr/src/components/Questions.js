@@ -24,6 +24,31 @@ const Questions = (props) => {
     )
   } else if (props.quizStarted === true){
     console.log('yooooooooooo');
+
+    //let question;
+
+    // let question = async () => {
+    //   let json = await fetch(`https://opentdb.com/api.php?amount=1`);
+    //   let q = await json.json();
+    //   return q
+    // };
+    //
+    // let a = question();
+    //
+    // console.log(a);
+
+    async function showAvatar() {
+      let githubResponse = await fetch(`https://opentdb.com/api.php?amount=1`);
+      let githubUser = await githubResponse.json();
+
+      console.log(githubUser);
+    }
+
+    let b = showAvatar();
+    console.log(b);
+    console.log(showAvatar());
+
+
     return (
     <div>
       <p>
