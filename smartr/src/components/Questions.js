@@ -23,6 +23,7 @@ const Questions = (props) => {
       </div>
     )
   } else if (props.quizStarted === true){
+<<<<<<< HEAD
     console.log('yooooooooooo');
 
     //let question;
@@ -49,6 +50,8 @@ const Questions = (props) => {
     console.log(showAvatar());
 
 
+=======
+>>>>>>> 02180e2a108cb63467bf8aa0eae52f048676823c
     return (
     <div>
       <p>
@@ -56,6 +59,16 @@ const Questions = (props) => {
       </p>
     </div>
     )
+  } else if (props.imLeaving === true){
+      return (
+      <div>
+        <h1>
+        It's okay to be bad at stuff. Next time.
+        </h1>
+        <h5>*under breathe*</h5>
+        <h5>...idiot.</h5>
+      </div>
+      )
   } else {
     return null;
   }
