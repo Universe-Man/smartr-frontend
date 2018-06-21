@@ -14,7 +14,9 @@ class MainContainer extends React.Component {
       logInNow: false,
       quizStarting: false,
       quizStarted: false,
-      imLeaving: false
+      imLeaving: false,
+      question: '',
+      answers: null,
     }
   }
 
@@ -80,12 +82,31 @@ class MainContainer extends React.Component {
     }, () => console.log(this.state))
   }
 
-  handleFirstQuestion = () => {
-    this.setState({
-      quizStarted: true,
-      quizStarting: false
-    })
-    //startTimer()
+  handleFirstQuestion = (difficulty) => {
+    fetch(`http://localhost:3001/api/v1/trivia`, {
+		    method: "POST",
+		    headers: {"Content-Type": "application/json"},
+		    body: JSON.stringify({
+	        difficulty: difficulty,
+	     })
+     })
+     .then(r => r.json())
+     .then(data => {
+       const question = data.question.replace(/&#039;/g, `'`).replace(/&quot;/g, `"`);
+       const correct = data.correct_answer.replace(/&#039;/g, `'`).replace(/&quot;/g, `"`);
+       const incorrects = data.incorrect_answers.split(',');
+       const incorrect1 = incorrects[0].slice(2, -1).replace(/&#039;/g, `'`).replace(/&quot;/g, `"`);
+       const incorrect2 = incorrects[1].slice(2, -1).replace(/&#039;/g, `'`).replace(/&quot;/g, `"`);
+       const incorrect3 = incorrects[2].slice(2, -2).replace(/&#039;/g, `'`).replace(/&quot;/g, `"`);
+       const answers = [correct, incorrect1, incorrect2, incorrect3];
+
+       this.setState({
+         quizStarted: true,
+         quizStarting: false,
+         question: question,
+         answers: answers,
+       })
+   })
   }
 
   sayGoodbyeIdiot = () => {
@@ -99,8 +120,8 @@ class MainContainer extends React.Component {
       <div>
       <Buttons {...this.state} summonNewUserForm={this.summonNewUserForm} summonLoginForm={this.summonLoginForm} startQuiz={this.startQuiz} sayGoodbyeIdiot={this.sayGoodbyeIdiot} />
         <SignUpForm {...this.state} createNewUser={this.createNewUser} logUserIn={this.logUserIn} />
-        <Questions quizStarting={this.state.quizStarting} quizStarted={this.state.quizStarted} handleCategorySelection={this.handleCategorySelection} handleFirstQuestion={this.handleFirstQuestion} imLeaving={this.state.imLeaving}/>
-        <Answers quizStarted={this.state.quizStarted} />
+        <Questions quizStarting={this.state.quizStarting} quizStarted={this.state.quizStarted} handleCategorySelection={this.handleCategorySelection} handleFirstQuestion={this.handleFirstQuestion} imLeaving={this.state.imLeaving} question={this.state.question}/>
+        <Answers quizStarted={this.state.quizStarted} answers={this.state.answers}/>
         <QuizInfo quizStarted={this.state.quizStarted} handleFirstQuestion={this.handleFirstQuestion}/>
       </div>
     )
