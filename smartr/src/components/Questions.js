@@ -36,8 +36,8 @@ const Questions = (props) => {
         <h1>
         It's okay to be bad at stuff. Next time.
         </h1>
-        <h5>*under breathe*</h5>
-        <h5>...idiot.</h5>
+        <h5>*under breath*</h5>
+        <h5>...idiot</h5>
       </div>
       )
   } else {
