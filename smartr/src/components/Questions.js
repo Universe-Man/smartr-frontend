@@ -1,47 +1,88 @@
 import React from 'react';
 
-const Questions = (props) => {
+class Questions extends React.Component {
+  state = {
+    difficulty: '',
+  }
 
-  if (props.quizStarting === true){
-    return (
-      <div>
-        <br/>
-        Please Select a Smartr Category:
-        <br/>
-        %dropdown menu of categories%
-        <button type='submit' onClick={props.handleCategorySelection}>Enter/Select</button>
-      </div>
-    )
-  } else if (props.quizStarting === 'almost'){
-    return (
-      <div>
-        <br/>
-        Please Select Difficulty of Question 1:
-        <br/>
-        %radio buttons of difficulty%
-        <button type='submit' onClick={props.handleFirstQuestion} >Prepare Yourself...</button>
-      </div>
-    )
-  } else if (props.quizStarted === true){
-    return (
-    <div>
-      <p>
-      Which of the following is the right answer to this very important question?
-      </p>
-    </div>
-    )
-  } else if (props.imLeaving === true){
+  handleDifficulty = (event) => {
+    this.setState({
+      difficulty: event.target.name
+    }, () => console.log(this.state.difficulty))
+  }
+
+  handleDifficultySubmit = (event) => {
+    event.preventDefault();
+    this.props.handleFirstQuestion(this.state.difficulty);
+  }
+
+  render() {
+    if (this.props.quizStarting === true){
+      return (
+        <div>
+          <br/>
+          Please Select a Smartr Category:
+          <br/>
+          <select onChange={this.props.handleCategorySelection}>
+            <option value="9">General Knowledge</option>
+            <option value="10">Entertainment: Books</option>
+            <option value="11">Entertainment: Film</option>
+            <option value="12">Entertainment: Music</option>
+            <option value="13">Entertainment: Musicals & Theatres</option>
+            <option value="14">Entertainment: Television</option>
+            <option value="15">Entertainment: Video Games</option>
+            <option value="16">Entertainment: Board Games</option>
+            <option value="17">Science & Nature</option>
+            <option value="18">Science: Computers</option>
+            <option value="19">Science: Mathematics</option>
+            <option value="20">Mythology</option>
+            <option value="21">Sports</option>
+            <option value="22">Geography</option>
+            <option value="23">History</option>
+            <option value="24">Politics</option>
+            <option value="25">Art</option>
+            <option value="26">Celebrities</option>
+            <option value="27">Animals</option>
+            <option value="28">Vehicles</option>
+            <option value="29">Entertainment: Comics</option>
+            <option value="30">Science: Gadgets</option>
+            <option value="31">Entertainment: Japanese Anime & Manga</option>
+            <option value="32">Entertainment: Cartoon & Animations</option>
+          </select>
+        </div>
+      )
+    } else if (this.props.quizStarting === 'almost'){
+      return (
+        <div>
+          <br/>
+          Please Select Difficulty of Question 1:
+          <br/>
+          <form onSubmit={this.handleDifficultySubmit} >
+            <input type="radio" checked={this.state.difficulty === "easy"} name="easy" onClick={this.handleDifficulty} />Easy<br />
+            <input type="radio" checked={this.state.difficulty === "medium"} name="medium" onClick={this.handleDifficulty} />Medium<br />
+            <input type="radio" checked={this.state.difficulty === "hard"} name="hard" onClick={this.handleDifficulty} />Hard<br />
+            <button type='submit' >Prepare Yourself...</button>
+          </form>
+        </div>
+      )
+    } else if (this.props.quizStarted === true){
       return (
       <div>
-        <h1>
-        It's okay to be bad at stuff. Next time.
-        </h1>
-        <h5>*under breath*</h5>
-        <h5>...idiot</h5>
+        <p>
+        {this.props.question}
+        </p>
       </div>
       )
-  } else {
-    return null;
+    } else if (this.props.imLeaving === true){
+        return (
+        <div>
+          <h1>You answered {this.props.correct} out of 7 questions correctly.</h1>
+          <button onSubmit={this.props.restart}><h1>Restart?</h1></button>
+        </div>
+        )
+    } else {
+      return null;
+    }
   }
 }
 
