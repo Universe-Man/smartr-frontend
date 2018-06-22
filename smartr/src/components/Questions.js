@@ -5,14 +5,10 @@ class Questions extends React.Component {
     difficulty: '',
   }
 
-  handleDifficulty = (event) => {
+  handleDifficultySelect = (event) => {
     this.setState({
       difficulty: event.target.name
-    }, () => console.log(this.state.difficulty))
-  }
-
-  handleDifficultySubmit = (event) => {
-    event.preventDefault();
+    })
     this.props.handleFirstQuestion(this.state.difficulty);
   }
 
@@ -55,14 +51,13 @@ class Questions extends React.Component {
       return (
         <div>
           <br/>
-          Please Select Difficulty of Question 1:
+          Please Select A Difficulty:
           <br/>
-          <form onSubmit={this.handleDifficultySubmit} >
-            <input type="radio" checked={this.state.difficulty === "easy"} name="easy" onClick={this.handleDifficulty} />Easy<br />
-            <input type="radio" checked={this.state.difficulty === "medium"} name="medium" onClick={this.handleDifficulty} />Medium<br />
-            <input type="radio" checked={this.state.difficulty === "hard"} name="hard" onClick={this.handleDifficulty} />Hard<br />
-            <button type='submit' >Prepare Yourself...</button>
-          </form>
+
+          <input type="radio" checked={this.state.difficulty === "easy"} name="easy" onClick={this.handleDifficultySelect} />Easy<br />
+          <input type="radio" checked={this.state.difficulty === "medium"} name="medium" onClick={this.handleDifficultySelect} />Medium<br />
+          <input type="radio" checked={this.state.difficulty === "hard"} name="hard" onClick={this.handleDifficultySelect} />Hard<br />
+
         </div>
       )
     } else if (this.props.quizStarted === true){
@@ -77,7 +72,7 @@ class Questions extends React.Component {
         return (
         <div>
           <h1>You answered {this.props.correct} out of 7 questions correctly.</h1>
-          <button onSubmit={this.props.restart}><h1>Restart?</h1></button>
+          <button onClick={this.props.restart}><h1>Restart?</h1></button>
         </div>
         )
     } else {

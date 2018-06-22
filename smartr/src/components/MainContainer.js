@@ -157,7 +157,7 @@ class MainContainer extends React.Component {
   }
 
   restart = () => {
-    this.setState = {
+    this.setState({
       loggedIn: false,
       newUser: false,
       logInNow: false,
@@ -170,7 +170,7 @@ class MainContainer extends React.Component {
       answers: null,
       questionCount: 0,
       correctQuestionCount: 0,
-    }
+    }, () => console.log(this.state))
   }
 
   render() {
