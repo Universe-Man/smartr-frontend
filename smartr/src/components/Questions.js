@@ -20,6 +20,7 @@ class Questions extends React.Component {
           Please Select a Smartr Category:
           <br/>
           <select onChange={this.props.handleCategorySelection}>
+            <option selected>Select A Category</option>
             <option value="9">General Knowledge</option>
             <option value="10">Entertainment: Books</option>
             <option value="11">Entertainment: Film</option>
@@ -69,12 +70,18 @@ class Questions extends React.Component {
       </div>
       )
     } else if (this.props.imLeaving === true){
-        return (
+      if (this.state.difficulty !== '') {
+        this.setState({
+          difficulty: ''
+        })
+      }
+
+      return (
         <div>
           <h1>You answered {this.props.correct} out of 7 questions correctly.</h1>
-          <button onClick={this.props.restart}><h1>Restart?</h1></button>
+          <button onClick={this.props.restart}><h1>Double Click to Restart</h1></button>
         </div>
-        )
+      )
     } else {
       return null;
     }
