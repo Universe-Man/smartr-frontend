@@ -107,7 +107,14 @@ class MainContainer extends React.Component {
        const incorrect1 = incorrects[0].slice(2, -1).replace(/&#039;/g, `'`).replace(/&quot;/g, `"`);
        const incorrect2 = incorrects[1].slice(2, -1).replace(/&#039;/g, `'`).replace(/&quot;/g, `"`);
        const incorrect3 = incorrects[2].slice(2, -2).replace(/&#039;/g, `'`).replace(/&quot;/g, `"`);
-       const answers = [correct, incorrect1, incorrect2, incorrect3];
+       let answers = [correct, incorrect1, incorrect2, incorrect3];
+       let correctAnswer = answers.shift()
+       let randomIndex = Math.floor(Math.random() * Math.floor(4))
+       answers.splice(randomIndex, 0, correctAnswer)
+      // let shuffledAnswers = () => {
+      //   // console.log(answers);
+      //   let correctAnswer =
+      // }
 
        this.setState({
          quizStarted: true,
